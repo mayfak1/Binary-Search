@@ -112,10 +112,10 @@ void choose_alg(int choice,int *t, int n, int x){
     switch (choice)
     {
     case 2:
-        //lover_bound_brenchless(t, n,  x);
+        lover_bound_brenchless(t, n,  x);
         break;
     case 3:
-       // lover_bound_prefetch(t, n,  x);
+        lover_bound_prefetch(t, n,  x);
         break;
     default:
         lover_bound(t, n,  x);
