@@ -4,13 +4,13 @@
 #include <time.h>
 
 int lover_bound(int *, int, int);
-int lower_bound_branchless(int *, int , int );
-int lower_bound_prefetch(int *, int , int );
+int lover_bound_branchless(int *, int , int );
+int lover_bound_prefetch(int *, int , int );
 double search_median(double *,int);
 double search_avg(double *, int , int );
 void choose_alg(int ,int* , int , int );
 
-int lower_bound_branchless(int *t, int n, int x) {
+int lover_bound_branchless(int *t, int n, int x) {
     int *base = t, len = n;
     while (len > 1) {
         int half = len / 2;
@@ -19,7 +19,7 @@ int lower_bound_branchless(int *t, int n, int x) {
     }
     return *base;
 }
-int lower_bound_prefetch(int *t, int n, int x) {
+int lover_bound_prefetch(int *t, int n, int x) {
     int k = 1;
     while (k <= n) {
         __builtin_prefetch(t + k * 16);
@@ -108,11 +108,12 @@ double search_avg(double *times, int nruns, int k){
     return t / n;
 }
 
+
 void choose_alg(int choice,int *t, int n, int x){
     switch (choice)
     {
     case 2:
-        lover_bound_brenchless(t, n,  x);
+        lover_bound_branchless(t, n,  x);
         break;
     case 3:
         lover_bound_prefetch(t, n,  x);
